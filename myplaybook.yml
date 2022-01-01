@@ -1,0 +1,31 @@
+---
+ - hosts: dbserver
+   remote_user: root
+   ignore_errors: yes
+   tasks:
+           - name: Create a user
+             user: 
+                 name: u7092020
+                 comment: Carlos Monte
+           - name: Create a user
+             user:
+                 name: u7092021
+                 comment: Felice Tamofo
+           - name: Create a file on target host
+             file:
+                 path: /opt/ansiblefile
+                 state: touch
+           - name: Create a directory on target host
+             file:
+                 path: /opt/directory_ansible
+                 state: directory
+           - name: Install apache
+             yum: 
+                name: httpd
+                state: present
+           - name: Start service
+             service: 
+                name: httpd
+                state: started
+
+
